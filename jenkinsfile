@@ -1,0 +1,11 @@
+
+pipeline{
+
+stages{
+}
+
+allur@Yasaswini MINGW64 /d/reposs/test1 (feauture/cicd)
+$ touch somefile
+
+allur@Yasaswini MINGW64 /d/reposs/test1 (feauture/cicd)
+$
