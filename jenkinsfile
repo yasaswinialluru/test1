@@ -1,6 +1,64 @@
-pipeline{
- agent any{
-  stages{
-  }
-  }
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'checkout...'
+                //  checkout steps (git checkout)
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                // build steps (mvn clean package maven,gradle
+                                npm build)
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                //  test steps (mvn test selenium,junit)
+            }
+        }
+        
+         stage('scan') {
+            steps {
+                echo 'scanning...'
+                // scan steps (sonar qube)
+            }
+         }
+          stage('artifactory') {
+              steps {
+                echo 'artifactory...'
+                // artifactory steps (jfrog)
+            }
+         }
+        
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                //  deployment steps 
+            }
+        }
+    }
+
+    post {
+        success {
+            script {
+                // Promotion for successful builds
+                if (env.BRANCH_NAME == 'master') {
+                    echo 'Promoting to Production...'
+                    //  production promotion steps 
+                } else {
+                    echo 'Promoting to QA...'
+                    //  QA promotion steps
+                }
+            }
+        }
+    }
+}
+
   
